@@ -75,12 +75,17 @@ def visualize(cid, destination, hu_min=DEFAULT_HU_MIN, hu_max=DEFAULT_HU_MAX,
     if not out_path.exists():
         out_path.mkdir()  
 
-    # Load segmentation and volume
-    vol, seg = load_case(cid)
-    spacing = vol.affine
-    vol = vol.get_data()
-    seg = seg.get_data()
-    seg = seg.astype(np.int32)
+    spacing = None
+    if isinstance(cid, str):
+        # Load segmentation and volume
+        vol, seg = load_case(cid)
+        spacing = vol.affine
+        vol = vol.get_data()
+        seg = seg.get_data()
+        seg = seg.astype(np.int32)
+    else:
+        vol, seg = cid
+        seg = seg.astype(np.int32)
     
     # Convert to a visual format
     vol_ims = hu_to_grayscale(vol, hu_min, hu_max)
