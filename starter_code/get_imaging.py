@@ -30,10 +30,11 @@ def cleanup(bar, msg):
 
 
 if __name__ == "__main__":
-    left_to_download = []
-    for i in range(300):
-        if not get_destination(i).exists():
-            left_to_download = left_to_download + [i]
+    left_to_download  = [8, 12, 24, 25, 28, 
+                        29, 36, 37, 42, 47, 
+                        55, 56, 57, 66, 67, 
+                        70, 73, 78, 79, 87, 
+                        88, 89, 90, 92, 95]
 
 
     print("{} cases to download...".format(len(left_to_download)))
